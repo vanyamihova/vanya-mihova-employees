@@ -1,0 +1,45 @@
+<form method="post" enctype="multipart/form-data" action="/uploadFile">
+  <button mat-raised-button color="primary" (click)="uploadFileInput.click()">Browse file</button>
+
+  <mat-form-field appearance="fill">
+    <input matInput type="text" name="filename" [ngModel]="filename" disabled>
+    <button *ngIf="filename" matSuffix mat-icon-button aria-label="Clear" (click)="cleanSelection()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <button mat-raised-button color="accent" (click)="showResults()">Show results</button>
+
+  <input type="file" #uploadFileInput id="uploadFileInput" (change)="onChangeFileInput($event.target)" name="uploadFileInput" />
+</form>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!-- Employee ID #1 Column -->
+  <ng-container matColumnDef="firstEmployeeId">
+    <th mat-header-cell *matHeaderCellDef> Employee ID #1 </th>
+    <td mat-cell *matCellDef="let element"> {{element.firstEmployeeId}} </td>
+  </ng-container>
+
+  <!-- Employee ID #2 Column -->
+  <ng-container matColumnDef="secondEmployeeId">
+    <th mat-header-cell *matHeaderCellDef> Employee ID #2 </th>
+    <td mat-cell *matCellDef="let element"> {{element.secondEmployeeId}} </td>
+  </ng-container>
+
+  <!-- Project ID Column -->
+  <ng-container matColumnDef="projectId">
+    <th mat-header-cell *matHeaderCellDef> Project ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.projectId}} </td>
+  </ng-container>
+
+  <!-- Days worked Column -->
+  <ng-container matColumnDef="daysWorked">
+    <th mat-header-cell *matHeaderCellDef> Days worked </th>
+    <td mat-cell *matCellDef="let element"> {{element.daysWorked}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
