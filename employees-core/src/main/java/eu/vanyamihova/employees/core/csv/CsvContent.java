@@ -1,5 +1,6 @@
 package eu.vanyamihova.employees.core.csv;
 
+import lombok.Getter;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.List;
 @Component
 public final class CsvContent {
 
+    @Getter
     private final List<CsvLine> lines = new ArrayList<>();
 
     void addLine(CsvLine newLine) {
@@ -25,10 +27,6 @@ public final class CsvContent {
 
     void clear() {
         this.lines.clear();
-    }
-
-    public List<CsvLine> getLines() {
-        return lines;
     }
 
 }

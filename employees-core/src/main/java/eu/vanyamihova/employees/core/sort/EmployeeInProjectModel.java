@@ -1,5 +1,7 @@
 package eu.vanyamihova.employees.core.sort;
 
+import lombok.Getter;
+
 import java.time.LocalDate;
 
 /**
@@ -10,6 +12,7 @@ import java.time.LocalDate;
  * @author Vanya Mihova - vanya.mihova89@gmail.com
  * @since 30.10.2021
  */
+@Getter
 public final class EmployeeInProjectModel {
 
     private final Integer employeeId;
@@ -24,15 +27,4 @@ public final class EmployeeInProjectModel {
         this.dateTo = dateTo;
     }
 
-    public Integer getEmployeeId() {
-        return employeeId;
-    }
-
-    public LocalDate getDateFrom() {
-        return dateFrom;
-    }
-
-    public LocalDate getDateTo() {
-        return dateTo;
-    }
 }

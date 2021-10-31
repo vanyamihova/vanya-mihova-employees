@@ -1,6 +1,7 @@
 package eu.vanyamihova.employees.core.csv.employees;
 
 import eu.vanyamihova.employees.core.csv.CsvLine;
+import lombok.Getter;
 
 import java.time.LocalDate;
 
@@ -10,6 +11,7 @@ import java.time.LocalDate;
  * @author Vanya Mihova - vanya.mihova89@gmail.com
  * @since 30.10.2021
  */
+@Getter
 public final class EmployeesCsvLine implements CsvLine {
 
     private Integer employeeId;
@@ -32,19 +34,4 @@ public final class EmployeesCsvLine implements CsvLine {
         return employeeId == null || projectId == null || dateFrom == null;
     }
 
-    public Integer getEmployeeId() {
-        return employeeId;
-    }
-
-    public Integer getProjectId() {
-        return projectId;
-    }
-
-    public LocalDate getDateFrom() {
-        return dateFrom;
-    }
-
-    public LocalDate getDateTo() {
-        return dateTo;
-    }
 }

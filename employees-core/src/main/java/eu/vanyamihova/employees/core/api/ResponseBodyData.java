@@ -1,6 +1,7 @@
 package eu.vanyamihova.employees.core.api;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Getter;
 
 /**
  * Main structure of responses for this application
@@ -11,10 +12,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public final class ResponseBodyData<T> {
 
+    @Getter
     private final String status;
 
+    @Getter
     private T data;
 
+    @Getter
     private String error;
 
     public ResponseBodyData(String status, T data) {
@@ -25,18 +29,6 @@ public final class ResponseBodyData<T> {
     public ResponseBodyData(String status, String errorMessage) {
         this.status = status;
         this.error = errorMessage;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public String getError() {
-        return error;
-    }
-
-    public T getData() {
-        return data;
     }
 
 }
