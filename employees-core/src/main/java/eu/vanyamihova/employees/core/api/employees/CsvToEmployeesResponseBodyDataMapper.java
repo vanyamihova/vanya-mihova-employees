@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 @Component
-public class CsvToEmployeesResponseBodyDataMapper {
+public final class CsvToEmployeesResponseBodyDataMapper {
 
     @Autowired
     private ProjectSortingComponent projectSortingComponent;

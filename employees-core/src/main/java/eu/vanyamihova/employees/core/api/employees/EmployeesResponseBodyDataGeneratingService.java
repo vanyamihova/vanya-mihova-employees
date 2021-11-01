@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -42,7 +41,7 @@ public final class EmployeesResponseBodyDataGeneratingService extends GenerateRe
         }
     }
 
-    private List<EmployeesResponseBodyData> getResponseBody(MultipartFile file) throws IOException {
+    private List<EmployeesResponseBodyData> getResponseBody(MultipartFile file) throws Exception {
         CsvContent content = csvFileReader.read(employeesCsvContentConverter, file);
         return csvToEmployeesResponseBodyDataMapper.mapEntryToResponseBody(content);
     }

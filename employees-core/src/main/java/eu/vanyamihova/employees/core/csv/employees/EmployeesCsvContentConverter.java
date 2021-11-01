@@ -18,10 +18,12 @@ import java.time.LocalDate;
 public final class EmployeesCsvContentConverter extends CsvContentConverter {
 
     @Override
-    public CsvLine convert(String[] line) {
+    public CsvLine convert(String[] line) throws Exception {
         log.info("Converting the data for employee content");
         Integer employeeId = extractInteger(line, 0);
+        verifyValidIntegerValue(employeeId, "Invalid employee id value: " + employeeId);
         Integer projectId = extractInteger(line, 1);
+        verifyValidIntegerValue(projectId, "Invalid project id value: " + projectId);
         LocalDate dateFrom = extractLocalDate(line, 2);
         LocalDate dateTo = extractLocalDate(line, 3);
         return new EmployeesCsvLine(employeeId, projectId, dateFrom, dateTo);

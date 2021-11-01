@@ -1,5 +1,7 @@
 package eu.vanyamihova.employees.core.csv;
 
+import eu.vanyamihova.employees.core.exception.InvalidIntegerValueException;
+import eu.vanyamihova.employees.core.exception.NotSupportedDateFormatException;
 import eu.vanyamihova.employees.core.utils.DateFormatCollection;
 import lombok.extern.slf4j.Slf4j;
 
@@ -17,9 +19,15 @@ import java.time.format.DateTimeParseException;
 @Slf4j
 public abstract class CsvContentConverter {
 
-    public abstract CsvLine convert(String[] line);
+    public abstract CsvLine convert(String[] line) throws Exception;
 
-    protected LocalDate extractLocalDate(String[] line, int index) {
+    protected void verifyValidIntegerValue(Integer value, String errorMessage) {
+        if (value == null || value < 0) {
+            throw new InvalidIntegerValueException(errorMessage);
+        }
+    }
+
+    protected LocalDate extractLocalDate(String[] line, int index) throws DateTimeParseException, NotSupportedDateFormatException {
         if (line.length <= index) {
             return null;
         }
@@ -28,17 +36,15 @@ public abstract class CsvContentConverter {
             log.info("The date has value of `NULL`. The NOW() will be set");
             return LocalDate.now();
         }
-        try {
-            DateTimeFormatter formatter = createFormatter(dateAsString);
-            return LocalDate.parse(dateAsString, formatter);
-        } catch (DateTimeParseException exception) {
-            log.error("Error while parsing date '{}' : {}", dateAsString, exception.getMessage());
-            return null;
-        }
+        DateTimeFormatter formatter = createFormatter(dateAsString);
+        return LocalDate.parse(dateAsString, formatter);
     }
 
     protected Integer extractInteger(String[] line, int index) {
         if (line.length <= index) {
+            return null;
+        }
+        if (line[index] == null) {
             return null;
         }
         return Integer.parseInt(line[index].trim());

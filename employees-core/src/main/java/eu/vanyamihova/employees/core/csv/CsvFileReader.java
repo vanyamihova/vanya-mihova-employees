@@ -25,7 +25,7 @@ public class CsvFileReader {
     @Autowired
     private CsvContent csvContent;
 
-    public CsvContent read(CsvContentConverter csvContentConverter, MultipartFile file) throws IOException {
+    public CsvContent read(CsvContentConverter csvContentConverter, MultipartFile file) throws Exception {
         log.info("Start reading file {}", file.getOriginalFilename());
         csvContent.clear();
 
